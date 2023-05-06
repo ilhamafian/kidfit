@@ -280,62 +280,89 @@
 
 			</div>
 
-			<div class="col-xl-3 col-lg-3">
-					<div class="card shadow mb-4">
-						<div class="card-header border-0">
-							<div class="row align-items-center">
-								<div class="col">
-									<h6 class="m-0 font-weight-bold text-primary">Tops</h6>
-								</div>
+			<div class="col-xl-6 col-lg-6">
+				<div class="card shadow mb-4">
+					<div class="card-header border-0">
+						<div class="row align-items-center">
+							<div class="col">
+								<h6 class="m-0 font-weight-bold text-primary">Best Fit</h6>
 							</div>
 						</div>
-						<div class="table-responsive">
-							<!-- Projects table -->
-							<table class="table table-responsive-md align-items-center table-flush">
-								<thead class="thead-light">
-									<tr>
-										<th scope="col">No.</th>
-										<th scope="col">Brand</th>
-										<th scope="col">Size</th>
-										<th scope="col">Best Fit</th>
-									</tr>
-								</thead>
-								<tbody>
-									{% if size %}
-									{% for i in size %}
-									{% for key, value in i.0.items %}
-									{% if 'belts' not in key %}
-									{% if 'shoes' not in key %}
-									{% if 'socks' not in key %}
-									{% if 'fit' not in key %}
-	
-									<tr>
-										<th scope="row">
-											{{ forloop.parentloop.counter }}
-										</th>
-										<td>
-											<span class="text-capitalize">{{i.1}}</span>
-										</td>
-										<td>
-											{{value.0}}
-										</td>
-										<td>
-											{{value.1}}%
-										</td>
-									</tr>
-									
-									{% endif %}
-									{% endif %}
-									{% endif %}
-									{% endif %}
-									{% endfor %}
-									{% endfor %}
-									{% endif %}
-								</tbody>
-							</table>
-						</div>
+					</div>
+					<div class="table-responsive">
+						<!-- Projects table -->
+						<table class="table table-responsive-md align-items-center table-flush">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">Category</th>
+									<th scope="col">Brand</th>
+									<th scope="col">Size</th>
+									<th scope="col">Best Fit</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>
+										Tops
+									</th>
+									<td>
+										<span class="text-capitalize">Ralph Lauren</span>
+									</td>
+									<td>
+										6x
+									</td>
+									<td>
+										92%
+									</td>
+								</tr>
+								<tr>
+									<th>
+										Bottoms
+									</th>
+									<td>
+										<span class="text-capitalize">H&M</span>
+									</td>
+									<td>
+										7-8
+									</td>
+									<td>
+										86%
+									</td>
+								</tr>
+								<tr>
+									<th>
+										Belts
+									</th>
+									<td>
+										<span class="text-capitalize">H&M</span>
+									</td>
+									<td>
+										7-8
+									</td>
+									<td>
+										76%
+									</td>
+								</tr>
+								<tr>
+									<th>
+										Shoes
+									</th>
+									<td>
+										<span class="text-capitalize">Ralph Lauren</span>
+									</td>
+									<td>
+										6x
+									</td>
+									<td>
+										92%
+									</td>
+								</tr>
+								
+							</tbody>
+						</table>
 					</div>
 				</div>
+		</div>
 	
 
 		</div>

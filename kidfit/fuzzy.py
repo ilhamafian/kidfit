@@ -116,6 +116,8 @@ def output(request):
 	# , 'boys':finalsize[0]["boys"], 'girls':finalsize[0]["girls"]
 	# counter = 0
 
+	print(percentsize)
+	
 	return render(request, 'base.html', {'size':size, 'weight': float(request.POST.get('weight', 0)), 'height':float(request.POST.get('height', 0)), 'inseam':float(request.POST.get('inseam', 0)), 'chest':float(request.POST.get('chest', 0)), 'waist':float(request.POST.get('waist', 0)), 'hip':float(request.POST.get('hip', 0)), 'foot':float(request.POST.get('foot', 0)), 'inch':inch, 'cent':cent, 'gender':gender})
 
 
