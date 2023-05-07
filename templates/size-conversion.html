@@ -173,6 +173,106 @@
                     </div>
 
                     <div class="row">
+                        <div class="col-xl-5 mb-5">
+                            <div class="card shadow">
+                                <div class="card-header border-0">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h5 class="m-0 font-weight-bold text-primary">Convert From:</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-12 mb-6">
+                                            <form class="d-none d-sm-inline-block form-inline ml-md-3 my-2 mw-100 navbar-search py-2">
+                                                <div class="input-group">
+                                                    <input type="text" style="width: 300px;"class="form-control bg-light border-1 small mr-2" placeholder="Enter Here"
+                                                        aria-label="Search">
+                                                    <div class="input-group-append">
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-primary dropdown-toggle ml-3" type="button" data-toggle="dropdown">
+                                                                US
+                                                              </button>
+                                                            <div class="dropdown-menu">
+                                                              <a class="dropdown-item" href="#" onclick="updateDropdown(this)">UK</a>
+                                                              <a class="dropdown-item" href="#" onclick="updateDropdown(this)">Europe</a>
+                                                              <a class="dropdown-item" href="#" onclick="updateDropdown(this)">Australia</a>
+                                                            </div>
+                                                        </div>
+                                                          
+                                                        <script>
+                                                        function updateDropdown(option) {
+                                                            // Get the text of the selected option
+                                                            var selectedText = option.textContent.trim();
+                                                            // Update the text of the dropdown button with the selected option
+                                                            var dropdownButton = option.closest('.dropdown').querySelector('.dropdown-toggle');
+                                                            dropdownButton.innerHTML = selectedText;
+                                                        }
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <p>Enter the size of your shoes or clothes, and then select the metrics that it uses.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 mb-5">
+                            
+                        </div>
+                        <div class="col-xl-5 mb-5">
+                            <div class="card shadow">
+                                <div class="card-header border-0">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h5 class="m-0 font-weight-bold text-primary">To:</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-12 mb-6">
+                                            <form class="d-none d-sm-inline-block form-inline ml-md-3 my-2 mw-100 navbar-search py-2">
+                                                <div class="input-group">
+                                                    <input type="text" style="width: 300px;"class="form-control bg-light border-1 small mr-2" placeholder="It Will Show Up Here"
+                                                        aria-label="Search" readonly>
+                                                    <div class="input-group-append">
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-primary dropdown-toggle ml-3" type="button" data-toggle="dropdown">
+                                                                US
+                                                              </button>
+                                                            <div class="dropdown-menu">
+                                                              <a class="dropdown-item" href="#" onclick="updateDropdown(this)">UK</a>
+                                                              <a class="dropdown-item" href="#" onclick="updateDropdown(this)">Europe</a>
+                                                              <a class="dropdown-item" href="#" onclick="updateDropdown(this)">Australia</a>
+                                                            </div>
+                                                        </div>
+                                                          
+                                                        <script>
+                                                        function updateDropdown(option) {
+                                                            // Get the text of the selected option
+                                                            var selectedText = option.textContent.trim();
+                                                            // Update the text of the dropdown button with the selected option
+                                                            var dropdownButton = option.closest('.dropdown').querySelector('.dropdown-toggle');
+                                                            dropdownButton.innerHTML = selectedText;
+                                                        }
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <p>Enter the size of your shoes or clothes, and then select the metrics that it uses.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-xl-6 mb-5 mb-xl-0">
                             <div class="card shadow">
                                 <div class="card-header border-0">
