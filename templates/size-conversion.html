@@ -13,7 +13,7 @@
     <title>KidFit - Size Conversion</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/34cc0e4226.js" crossorigin="anonymous"></script>
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -167,11 +167,10 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">International Conversion Chart
-                            for Children’s Clothing</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Size Conversion Tool</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
-
+                    
                     <div class="row">
                         <div class="col-xl-5 mb-5">
                             <div class="card shadow">
@@ -179,6 +178,22 @@
                                     <div class="row align-items-center">
                                         <div class="col">
                                             <h5 class="m-0 font-weight-bold text-primary">Convert From:</h6>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group row">
+                                                <div class="col-sm-3 mb-3 mb-sm-0">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input" id="inches" name="measurement" value="inches" {% if inch == 1 %} checked="checked" {% endif %}>
+                                                        <label class="custom-control-label small" for="inches" >Shoes</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 mb-3 mb-sm-0">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input" id="centimeters" name="measurement" value="centimeters" {% if cent == 1 %} checked="checked" {% endif %}>
+                                                        <label class="custom-control-label small" for="centimeters">Clothes</label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -215,28 +230,28 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <p>Enter the size of your shoes or clothes, and then select the metrics that it uses.
+                                    <p>Enter your shoe or clothing size and select your preferred sizing standard by country or continent for a comfortable and personalized fit.
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-2 mb-5">
-                            
+                        <div class="col-xl-2 mb-5 d-flex justify-content-center align-items-center">
+                            <i class="fas fa-arrows-alt-h fa-5x" style="color: rgb(247, 31, 142);"></i>
                         </div>
                         <div class="col-xl-5 mb-5">
                             <div class="card shadow">
                                 <div class="card-header border-0">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h5 class="m-0 font-weight-bold text-primary">To:</h6>
+                                            <h5 class="m-0 font-weight-bold text-primary" style="background-color: #fff;">To:</h6>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xl-12 mb-6">
                                             <form class="d-none d-sm-inline-block form-inline ml-md-3 my-2 mw-100 navbar-search py-2">
                                                 <div class="input-group">
-                                                    <input type="text" style="width: 300px;"class="form-control bg-light border-1 small mr-2" placeholder="It Will Show Up Here"
-                                                        aria-label="Search" readonly>
+                                                    <input type="text" style="width: 300px; background-color: #a7a7a7;"class="form-control bg-light border-1 small mr-2 input-gray"
+                                                        aria-label="Search" readonly disabled>
                                                     <div class="input-group-append">
                                                         <div class="dropdown">
                                                             <button class="btn btn-primary dropdown-toggle ml-3" type="button" data-toggle="dropdown">
@@ -265,11 +280,16 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <p>Enter the size of your shoes or clothes, and then select the metrics that it uses.
+                                    <p>Displayed here are the converted sizes for the shoes/clothes you entered, providing you with the accurate size information you need.
                                     </p>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">International Conversion Chart for Children’s Clothing</h1>
+                        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
 
                     <div class="row">
