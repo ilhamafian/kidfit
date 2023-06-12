@@ -17,8 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from . import fuzzy
+from accounts import views
 
-    
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('accounts.urls')),
@@ -26,5 +27,7 @@ urlpatterns = [
     path('size-conversion', TemplateView.as_view(template_name='size-conversion.html')),
     path('size-charts', TemplateView.as_view(template_name='size-charts.html')),
     path('output', fuzzy.output),
+    path('login/', views.loginPage, name="login"),
+    path('register/', views.registerPage, name="register"),
 
 ]
