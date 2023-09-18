@@ -23,11 +23,15 @@ from accounts import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('accounts.urls')),
-    path('', TemplateView.as_view(template_name='base.html')),
+    path('home', TemplateView.as_view(template_name='base.html')),
     path('size-conversion', TemplateView.as_view(template_name='size-conversion.html')),
     path('size-charts', TemplateView.as_view(template_name='size-charts.html')),
+    path('profile', TemplateView.as_view(template_name='profile.html')),
+    path('child-info', TemplateView.as_view(template_name='child-info.html')),
     path('output', fuzzy.output),
     path('login/', views.loginPage, name="login"),
+    path('logout/', views.logoutUser, name="logout"),
     path('register/', views.registerPage, name="register"),
-
+    path('forgot-password/', TemplateView.as_view(template_name='forgot-password.html')),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]

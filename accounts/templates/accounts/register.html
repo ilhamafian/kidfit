@@ -11,7 +11,7 @@
     <meta name="dAescription" content="" />
     <meta name="author" content="" />
 
-    <title>KidFit</title>
+    <title>KidFit - Register</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -35,7 +35,8 @@
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
-            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+            <!-- <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> -->
+            <div class="col-lg-5 d-none d-lg-block"></div>
             <div class="col-lg-7">
               <div class="p-5">
                 <div class="text-center">
@@ -92,6 +93,8 @@
                     class="btn btn-primary btn-user btn-block"
                   />
 
+                  {{form.errors}}
+
                   <hr />
                   <a
                     href="index.html"
@@ -114,7 +117,7 @@
                   >
                 </div>
                 <div class="text-center">
-                  <a class="small" href="login.html"
+                  <a class="small" href="/login"
                     >Already have an account? Login!</a
                   >
                 </div>
