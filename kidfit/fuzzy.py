@@ -145,15 +145,7 @@ def output(request):
                     highest_percentage = percentage
                     highest_percentage_shoes = item
 
-    highest_shoes = {
-        # belts and shoes cannot be inserted together because dictionary does not allow key with the same value, I think
-        'highest_shoes_item': highest_percentage_shoes
-    }
 
-    # print("highest_belts")
-    # print(highest_belts)
-    # print("highest_shoes")
-    # print(highest_shoes)
     # print("percentsize")
     # print(percentsize)
     print("size")
@@ -162,7 +154,8 @@ def output(request):
     return render(request, 'base.html', {'size': size, 'highest_belts': highest_belts, 'highest_shoes': highest_shoes, 'weight': float(request.POST.get('weight', 0)), 'height': float(request.POST.get('height', 0)), 'inseam': float(request.POST.get('inseam', 0)), 'chest': float(request.POST.get('chest', 0)), 'waist': float(request.POST.get('waist', 0)), 'hip': float(request.POST.get('hip', 0)), 'foot': float(request.POST.get('foot', 0)), 'inch': inch, 'cent': cent, 'gender': gender})
 
 
-def evaluate(brandChart, weight, height, inseam, chest, waist, hip, foot, gender):
+
+def evaluateBoth(brandChart, weight, height, inseam, chest, waist, hip, foot, gender):
 
     # initialization
     evalfinalsize = {}
@@ -171,7 +164,6 @@ def evaluate(brandChart, weight, height, inseam, chest, waist, hip, foot, gender
     finalsize = []
     finalpercentsize = []
 
-    # loop through table
     for loopCategory in brandChart:
         evalsize = {}
 
