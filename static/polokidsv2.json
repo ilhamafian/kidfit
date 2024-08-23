@@ -189,7 +189,8 @@
                 ]
             ]
         ],
-        "boys"
+        "boys",
+        "https://www.ralphlauren.com.my/kids?webcat=kids"
     ],
     [
         [
@@ -371,7 +372,8 @@
                 ]
             ]
         ],
-        "girls"
+        "girls",
+        "https://www.ralphlauren.com.my/kids?webcat=kids"
     ],
     [
         [
@@ -478,5 +480,5 @@
         ],
         "shoes socks junior"
     ],
-    "ralph lauren"
+    "Ralph Lauren"
 ]

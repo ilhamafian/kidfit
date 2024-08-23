@@ -7,6 +7,6 @@ urlpatterns = [
     # path('account/', include('accounts.urls')),
     path('login/', views.loginPage, name="login"),
     path('register/', views.registerPage, name="register"),
-
-
+    path('childInfo/', views.childInfo, name="childInfo"),
+    path('childSave/', views.childSave, name="childSave"),
 ]

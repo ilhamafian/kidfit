@@ -4,12 +4,19 @@ from django.contrib.auth.models import User
 from django import forms
 
 from .models import CustomUser
+from .models import ChildInfo
 
 
 class OrderForm(ModelForm):
     class Meta:
         model = CustomUser
         fields = '__all__'
+
+
+class ChildInfoForm(forms.ModelForm):
+    class Meta:
+        model = ChildInfo
+        exclude = ['user']
 
 
 class CreateUserForm(UserCreationForm):

@@ -1,0 +1,552 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <title>KidFit - Saved Measurements</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.css' %}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+			<!-- Sidebar - Brand -->
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+				<div class="sidebar-brand-icon rotate-n-15">
+					<i class="fas fa-tshirt"></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">KidFit</div>
+			</a>
+
+			
+
+				<!-- Divider -->
+				<hr class="sidebar-divider">
+
+				{% comment %} <!-- Heading -->
+				<div class="sidebar-heading">
+					Additional Tools
+				</div>
+
+				<!-- Nav Item - Pages Collapse Menu -->
+				<li class="nav-item">
+					<a class="nav-link" href="/size-conversion">
+						<i class="fas fa-fw fa-equals"></i>
+						<span>Size Conversion</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/size-charts">
+							<i class="fas fa-fw fa-table"></i>
+							<span>Size Charts</span></a>
+						</li> {% endcomment %}
+				<!-- Heading -->
+				<div class="sidebar-heading">
+					Category
+				</div>
+
+				<!-- Nav Item - Pages Collapse Menu -->
+				<li class="nav-item">
+					<a class="nav-link" href="/both">
+						<i class="fas fa-child"></i>
+						<span>Shirts & Pants</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/top">
+							<i class="fas fa-tshirt"></i>
+							<span>Shirts Only</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/bottom">
+								<i class="fas fa-socks"></i>
+								<span>Pants Only</span></a>
+							</li>
+
+                        <!-- Divider -->
+						<hr class="sidebar-divider" />
+
+						<div class="sidebar-heading">Additional Tools</div>
+				
+						<!-- Nav Item - Pages Collapse Menu -->
+						<li class="nav-item">
+						  <a class="nav-link" href="/size-charts">
+							<i class="fas fa-fw fa-table"></i>
+							<span>Size Charts</span>
+						  </a>
+						</li>
+						<!-- Nav Item - Utilities Collapse Menu -->
+
+						<!-- Divider -->
+						<hr class="sidebar-divider">
+
+						<!-- Heading -->
+						<div class="sidebar-heading">
+							Profile
+						</div>
+
+						<!-- Nav Item - Pages Collapse Menu -->
+						{% if user.is_authenticated %}
+						<li class="nav-item active">
+							<a class="nav-link" href="#">
+								<i class="fas fa-fw fa-user"></i>
+								<span>Saved Measurements</span></a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link" href="/settings">
+									<i class="fas fa-cog"></i>
+									<span>Settings</span></a>
+								</li>
+
+								<li class="nav-item">
+									<a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+										<i class="fas fa-sign-out-alt"></i>
+										<span>Logout</span></a>
+									</li>
+						{% else %}
+
+						<li class="nav-item">
+							<a class="nav-link" href="/register">
+								<i class="fas fa-user-plus"></i>
+								<span>Create Account</span></a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link" href="/login">
+									<i class="fas fa-sign-in-alt"></i>
+									<span>Login</span></a>
+								</li>
+
+						{% endif %}
+
+							<!-- Divider -->
+							<hr class="sidebar-divider d-none d-md-block">
+
+							<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+	<button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
+
+</ul>
+<!-- End of Sidebar -->
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+	<!-- Main Content -->
+	<div id="content">
+
+		<!-- Topbar -->
+		<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow ">
+
+			<!-- Sidebar Toggle (Topbar) -->
+			<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+				<i class="fa fa-bars"></i>
+			</button>
+
+			<!-- Topbar Search -->
+			<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="POST" action="{% url 'sizeChart' %}">
+				{% csrf_token %}
+				<div class="input-group">
+					<input type="text" class="form-control bg-light border-0 small" placeholder="Search brands size charts..." aria-label="Search" aria-describedby="basic-addon2" name="searched">
+					<div class="input-group-append">
+						<button class="btn btn-primary" type="submit">
+							<i class="fas fa-search fa-sm"></i>
+						</button>
+					</div>
+				</div>
+			</form>
+			
+
+			<!-- Topbar Navbar -->
+			<ul class="navbar-nav ml-auto">
+
+				<!-- Nav Item - Search Dropdown (Visible Only XS) -->
+				<li class="nav-item dropdown no-arrow d-sm-none">
+					<a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fas fa-search fa-fw"></i>
+					</a>
+					<!-- Dropdown - Messages -->
+					<div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+						<form class="form-inline mr-auto w-100 navbar-search">
+							<div class="input-group">
+								<input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+								<div class="input-group-append">
+									<button class="btn btn-primary" type="button">
+										<i class="fas fa-search fa-sm"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</li>
+
+
+				{% comment %} <div class="topbar-divider d-none d-sm-block"></div>
+
+				<!-- Nav Item - User Information -->
+				<li class="nav-item dropdown no-arrow">
+					<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="mr-2 d-none d-lg-inline text-gray-600 small">{{request.user}}</span>
+						<img class="img-profile rounded-circle"
+							src="/static/img/undraw_profile.svg">
+					</a>
+					<!-- Dropdown - User Information -->
+					<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+						aria-labelledby="userDropdown">
+						<a class="dropdown-item" href="/profile">
+							<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+							Profile
+						</a>
+						<a class="dropdown-item" href="/child-info">
+							<i class="fas fa-person fa-sm fa-fw mr-2 text-gray-400"></i>
+							Child Info
+						</a>
+						<!-- <a class="dropdown-item" href="#">
+							<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+							Activity Log
+						</a> -->
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
+							<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+							Logout
+						</a>
+					</div>
+				</li> {% endcomment %}
+
+			</ul>
+
+		</nav>
+		<!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h5 class="m-0 font-weight-bold text-primary">Add New Measurements</h5>
+                                    
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="px-3 pb-5">
+                                        {% if form.errors %}
+                                        <div class="alert alert-danger">
+                                          <strong>Error:</strong> {{ form.errors }}
+                                        </div>
+                                      {% endif %}
+                                        <form method="POST" action="{% url 'childInfo' %}" >
+                                            {% csrf_token %}
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <label class="form-control-label small" for="first_name">First Name</label>
+                                                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" value="{{first_name}}">
+                                                </div>
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <label class="form-control-label small" for="last_name">Last Name</label>
+                                                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="{{last_name}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                                    <label class="form-control-lab
+                                                    el small" for="gender">Gender</label>
+                                                    <select class="form-control" id="gender" name="gender">
+                                                        <option value="girl" {% if gender == "girl" %} selected="selected" {% endif %}>Girl</option>
+                                                        <option value="boy" {% if gender == "boy" %} selected="selected" {% endif %}>Boy</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-3 mb-3 mb-sm-0">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input" id="inches" name="measurement" value="inches" {% if inch == 1 %} checked="checked" {% endif %}>
+                                                        <label class="custom-control-label small" for="inches" >inches/lb</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 mb-3 mb-sm-0">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input" id="centimeters" name="measurement" value="centimeters" {% if cent == 1 %} checked="checked" {% endif %}>
+                                                        <label class="custom-control-label small" for="centimeters">centimeters/kg</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                                    <label class="form-control-label small" for="weight">Weight</label>
+                                                    <input type="number" class="form-control" name="weight" id="weight" placeholder="Weight"  value="{{weight}}">
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="form-control-label small" for="height">Height</label>
+                                                    <input type="number" class="form-control" name="height" id="height" placeholder="Height" value="{{height}}">
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="form-control-label small" for="inseam">Inseam</label>
+                                                    <input type="number" class="form-control" name="inseam" id="inseam" placeholder="Inseam" value="{{inseam}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                                    <label class="form-control-label small" for="chest">Chest</label>
+                                                    <input type="number" class="form-control" name="chest" id="chest" placeholder="Chest" value="{{chest}}">
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="form-control-label small" for="waist">Waist</label>
+                                                    <input type="number" class="form-control" name="waist" id="waist" placeholder="Waist" value="{{waist}}">
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="form-control-label small" for="hip">hip</label>
+                                                    <input type="number" class="form-control" name="hip" id="hip" placeholder="hip" value="{{hip}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                                    <label class="form-control-label small" for="foot">Length of Foot</label>
+                                                    <input type="number" class="form-control" name="foot" id="foot" placeholder="Foot" value="{{foot}}">
+                                                </div>
+                                            </div>
+        
+                                            <br>
+                                            <input type="submit"  class="btn btn-primary btn-user btn-block" value="Submit Measurements">
+
+                                    </form>
+                                    <!-- {{BestFit}} {{go}}{{boys}} {{brand}} -->
+        
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="mt-3 mb-2 mx-2 font-weight-bold h5 text-primary">Saved Measurements</div>
+                            
+                        {% if user_child_info %}
+                        {% for child_info in user_child_info %}
+                        <div class="row">
+                            <div class="col">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Accordion -->
+                                    <div href="#collapseCardExample{{ child_info.id }}"  class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <h5 class="m-0 font-weight-bold text-primary">{{ child_info.first_name }} {{ child_info.last_name }}</h5>
+                                            </div>
+                                            <div class="col-xl-3 m-auto">
+                                                <button href="#" class="btn btn-primary btn-icon-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-sync"></i>
+                                                    </span>
+                                                    <span class="text">Size</span>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <form action="/output" method="post">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="gender" value="{{ child_info.gender }}"/>
+                                                        <input type="hidden" name="measurement" value="{{ child_info.measurement }}"/>
+                                                        <input type="hidden" name="weight" value="{{ child_info.weight }}"/>
+                                                        <input type="hidden" name="height" value="{{ child_info.height }}"/>
+                                                        <input type="hidden" name="inseam" value="{{ child_info.inseam }}"/>
+                                                        <input type="hidden" name="chest" value="{{ child_info.chest }}"/>
+                                                        <input type="hidden" name="waist" value="{{ child_info.waist }}"/>
+                                                        <input type="hidden" name="hip" value="{{ child_info.hip }}"/>
+                                                        <input type="hidden" name="category" value="1"/>
+                                                        <button type="submit" class="dropdown-item">Shirts & Pants</button>
+                                                    </form>
+                                                    <form action="/output" method="post">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="gender" value="{{ child_info.gender }}"/>
+                                                        <input type="hidden" name="measurement" value="{{ child_info.measurement }}"/>
+                                                        <input type="hidden" name="weight" value="{{ child_info.weight }}"/>
+                                                        <input type="hidden" name="height" value="{{ child_info.height }}"/>
+                                                        <input type="hidden" name="inseam" value="{{ child_info.inseam }}"/>
+                                                        <input type="hidden" name="chest" value="{{ child_info.chest }}"/>
+                                                        <input type="hidden" name="waist" value="{{ child_info.waist }}"/>
+                                                        <input type="hidden" name="hip" value="{{ child_info.hip }}"/>
+                                                        <input type="hidden" name="category" value="2"/>
+                                                        <button type="submit" class="dropdown-item">Shirts Only</button>
+                                                    </form>
+                                                    <form action="/output" method="post">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="gender" value="{{ child_info.gender }}"/>
+                                                        <input type="hidden" name="measurement" value="{{ child_info.measurement }}"/>
+                                                        <input type="hidden" name="weight" value="{{ child_info.weight }}"/>
+                                                        <input type="hidden" name="height" value="{{ child_info.height }}"/>
+                                                        <input type="hidden" name="inseam" value="{{ child_info.inseam }}"/>
+                                                        <input type="hidden" name="chest" value="{{ child_info.chest }}"/>
+                                                        <input type="hidden" name="waist" value="{{ child_info.waist }}"/>
+                                                        <input type="hidden" name="hip" value="{{ child_info.hip }}"/>
+                                                        <input type="hidden" name="category" value="3"/>
+                                                        <button type="submit" class="dropdown-item">Pants Only</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 m-auto">
+                                                <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#deleteModal" data-child-id="{{ child_info.id }}">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-trash"></i>
+                                                    </span>
+                                                    <span class="text">Delete</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="collapse show" id="collapseCardExample{{ child_info.id }}">                           
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="px-2 text-center">
+                                                        <img src="/static/img/child_guide.svg" alt="Size Measurement Guide Image"  height="250">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <h6 class="m-2 font-weight-bold text-primary">Gender: {{ child_info.gender|title }}</h6>
+                                                    <h6 class="m-2 font-weight-bold text-primary">Weight: {{ child_info.weight }} kg</h6>
+                                                    <h6 class="m-2 font-weight-bold text-primary">Height: {{ child_info.height }} cm</h6>
+                                                    <h6 class="m-2 font-weight-bold text-primary">Inseam: {{ child_info.inseam }} cm</h6>
+                                                    <h6 class="m-2 font-weight-bold text-primary">Chest: {{ child_info.chest }} cm</h6>
+                                                    <h6 class="m-2 font-weight-bold text-primary">Waist: {{ child_info.waist }} cm</h6>
+                                                    <h6 class="m-2 font-weight-bold text-primary">hip: {{ child_info.hip }} cm</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+
+                    </div>
+                    
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; KidFit 2023</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="/login">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalHere" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Proceed to Delete?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                </div>
+                <div class="modal-body">When you click the "Delete" button, the measurements will be deleted and unable to be recovered.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger" href="#" id="deleteModalBtn">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+    <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+    
+    <script>
+        console.log('Script loaded!');
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            console.log('Modal Shown!');
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var childId = button.attr('data-child-id') // Extract info from data-* attributes
+            console.log('Child ID:', childId);
+            var modal = $(this);
+    
+            // Dynamically set the href attribute of the "Delete" button
+            modal.find('#deleteModalBtn').attr('href', '{% url "delete-measurement" 0 %}'.replace('0', childId));
+        });
+    </script>
+
+</body>
+
+</html>

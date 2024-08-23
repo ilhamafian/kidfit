@@ -25,6 +25,10 @@ SECRET_KEY = '7w2neznhpu@6j&3$(f5)gkom7phhxt110)cj%9t7k93560%0h3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
+
 ALLOWED_HOSTS = []
 
 
@@ -106,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -126,6 +130,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = '/logos/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'logos')
 
 INTERNAL_IPS = [
     # ...

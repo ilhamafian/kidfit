@@ -127,7 +127,8 @@
                 ]
             ]
         ],
-        "little girls"
+        "little girls",
+        "https://www.guess.my/"
     ],
     [
         [
@@ -257,7 +258,8 @@
                 ]
             ]
         ],
-        "big girls"
+        "big girls",
+        "https://www.guess.my/"
     ],
     [
         [
@@ -387,7 +389,8 @@
                 ]
             ]
         ],
-        "little boys"
+        "little boys",
+        "https://www.guess.my/"
     ],
     [
         [
@@ -551,7 +554,8 @@
                 ]
             ]
         ],
-        "big boys"
+        "boys",
+        "https://www.guess.my/"
     ],
     [
         [
@@ -669,7 +673,8 @@
                 ]
             ]
         ],
-        "baby"
+        "baby",
+        "https://www.guess.my/"
     ],
-    "guess"
+    "Guess"
 ]
